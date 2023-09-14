@@ -98,6 +98,13 @@ tasklCtrl.create = async (req, res) => {
 
     try {
 
+        if (!name) {
+            res.status(400).send({
+                messgae: "El nombre es obligatorio",
+                status: false
+            })
+        }
+
         const task = new taskModel({
             name: name,
             description: description,
@@ -141,6 +148,13 @@ tasklCtrl.update = async (req, res) => {
     let date = new Date();
     let strTime = date.toLocaleString("en-US", { timeZone: "America/Bogota" });
     const { name, duration, completed, description } = req.body;
+
+    if (!name) {
+        res.status(400).send({
+            messgae: "El nombre es obligatorio",
+            status: false
+        })
+    }
 
     let task = await taskModel.findById(req.params.id)
 

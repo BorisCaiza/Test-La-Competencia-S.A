@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateTask() {
     const [name, setName] = useState('');
     const [duration, setDuration] = useState('');
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState('');
+    const navigate = useNavigate();
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -35,8 +37,6 @@ export default function CreateTask() {
         try {
             const response = await axios.post("http://localhost:8000/api/task", body);
 
-            console.log(response);
-
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
@@ -46,7 +46,7 @@ export default function CreateTask() {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Redirige al usuario a la página de inicio
-                    window.location = `/`;
+                    navigate(`/`);
                 }
             });
 
@@ -55,13 +55,17 @@ export default function CreateTask() {
         }
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Evita el comportamiento predeterminado del formulario
+        createTask(); // Llama a la función para crear la tarea
+    };
 
     return (
         <div className='container'>
             <div className='row justify-content-center'>
                 <h1>Crea una tarea</h1>
                 <div className='col-sm-5'>
-                    <form>
+                    <form onSubmit={handleSubmit}> {/* Agrega onSubmit al formulario */}
                         <div className="form-group">
                             <label htmlFor="nombre">Nombre:</label>
                             <input
@@ -72,7 +76,7 @@ export default function CreateTask() {
                                 placeholder="Nombre"
                                 value={name}
                                 onChange={handleNameChange}
-                                required // Esto hace que el campo sea obligatorio
+                                required
                             />
                         </div>
 
@@ -102,8 +106,7 @@ export default function CreateTask() {
                                 required
                             />
                         </div>
-                        <button className="btn btn-primary mt-2">Crear Tarea</button>
-
+                        <button type="submit" className="btn btn-primary mt-2">Crear Tarea</button>
                     </form>
                 </div>
             </div>

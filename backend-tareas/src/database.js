@@ -3,20 +3,10 @@ const mongoose = require('mongoose');
 if (process.env.NODE_ENV !== 'production') {
     require("dotenv").config();
 }
-//const dbCconfig = require("./config/config");
-
-//const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = dbCconfig
-
-//const URL = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`
-
-const URL = "mongodb://127.0.0.1:27017/laCompetencia"
 
 
-//mongodb://viradmin:hetvir123@135.181.205.61:27017/scandere?authSource=admin`
 
-
-//mongodb://viradmin:hetvir123@135.181.205.61:27017/scandere?authSource=admin`
-
+const URL = process.env.DB
 //Conectarse a la base de datos
 mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(async () => {
