@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/create" element={<CrateTask />} />
+        <Route path="/edit/:id" element={<CrateTask />} />
 
       </Routes>
     </BrowserRouter>

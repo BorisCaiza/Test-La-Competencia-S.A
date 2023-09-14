@@ -47,7 +47,9 @@ tasklCtrl.getTask = async (req, res) => {
 
     let task = await taskModel.findById(id)
 
-    if (!local) {
+    console.log(task)
+
+    if (!task) {
 
         res.status(400).send({
             status: false,

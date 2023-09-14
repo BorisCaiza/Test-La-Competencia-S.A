@@ -10,7 +10,7 @@ export default function CreateTask() {
     const [description, setDescription] = useState('');
 
 
-    const id = useParams()
+    let { id } = useParams();
 
     const handleNameChange = (e) => {
         setName(e.target.value);
