@@ -45,6 +45,8 @@ tasklCtrl.getTask = async (req, res) => {
 
 
 
+
+
     let task = await taskModel.findById(id)
 
     console.log(task)

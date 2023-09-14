@@ -9,8 +9,29 @@ export default function CreateTask() {
     const [completed, setCompleted] = useState(false);
     const [description, setDescription] = useState('');
 
+    const [task, setTask] = useState([])
+
 
     let { id } = useParams();
+
+
+    const getTaskToEdit = async (id) => {
+
+        try {
+
+            let response = axios.get(`http://localhost:8000/api/task/${id}`)
+            console.log(response)
+
+            setTask(response.data.task)
+
+
+
+        } catch (error) {
+
+        }
+    }
+
+
 
     const handleNameChange = (e) => {
         setName(e.target.value);

@@ -82,7 +82,9 @@ export default function Home() {
                                         <td>{tarea.description}</td>
                                         <td>{tarea.duration}</td>
                                         <td>{tarea.completed}</td>
-                                        <td><button className="btn btn-success ml-2">Editar</button></td>
+                                        <td><button onClick={ }
+
+                                            className="btn btn-success ml-2">Editar</button></td>
                                         <td>
                                             <button
                                                 className="btn btn-danger"
